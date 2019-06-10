@@ -5,6 +5,7 @@ Created on Mon Jun 10 05:57:04 2019
 @author: Mikhail Kosaretskiy
 """
 import numpy as np
+import pandas as pd
 def short_label_equity(df, TakeUp, TrailDown, setY = False):
     #warnings.simplefilter(action='ignore', category=FutureWarning)
     # df - DataFrame with OHLC, Open, High, Low, Close
