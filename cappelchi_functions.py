@@ -191,7 +191,7 @@ def long_label_equity(df, TakeUp, TrailDown, setY = False):
                         Flag = 0
 
             elif Flag == 2:
-                if LowChange:
+                if HighChange:
                     High1 = CurHigh
                     if High1 / Low1 > TakeUp:
                         HighI = i
