@@ -200,7 +200,7 @@ def long_label_equity(df, TakeUp, TrailDown, setY = False):
 
                 if Low2Change:
                     Low2 = CurLow
-                    if High2 / Low1 > TrailDown:
+                    if High1 / Low2 > TrailDown:
                         HMark[LowI] = HPrI
                         LMark[HighI] = LPrI
                         LMark2[i] = Low2
