@@ -230,7 +230,7 @@ def get_rollover(df, df_OHLC, timeR = True, line_color = 'rgb(55, 128, 191)',\
         
     shape = []
     annotations = []
-    line_color = 'line_color
+    line_color = line_color
     line_width = line_width
     line_dash = line_dash
     if timeR:
