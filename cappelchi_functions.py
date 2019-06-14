@@ -219,3 +219,63 @@ def long_label_equity(df, TakeUp, TrailDown, setY = False):
                     
                     
     return i, Profit, Trades, Y
+
+
+def get_rollover(df, df_OHLC, timeR = True, line_color = 'rgb(55, 128, 191)',\
+                 line_width = 1, line_dash = 'dot'):
+    if timeR:        
+        values = df[(df.Rollover_date_based == 1)]
+    else:
+        values = df[(df.Rollover_volume_based == 1)]
+        
+    shape = []
+    annotations = []
+    line_color = 'line_color
+    line_width = line_width
+    line_dash = line_dash
+    if timeR:
+        
+        for value, text in zip(values.index, values.Name_date):
+            #print (value, text)
+            shape.append(dict(
+                                type = 'line',
+                                x0 = value,
+                                y0 = df_OHLC.Low.min() - 10,
+                                x1 = value,
+                                y1 = df_OHLC.High.max(),
+                                line = dict(
+                                            color = line_color,
+                                            width = line_width,
+                                            dash = line_dash
+                                            )                        
+                             )        
+                        )
+            annotations.append(dict(
+                                text = text,
+                                x = value,                       
+                                y = df_OHLC.loc[value].High,                                          
+                                   )        
+                              )
+    else:
+        for value, text in zip(values.index, values.Name_vol):
+            #print (value, text)
+            shape.append(dict(
+                                type = 'line',
+                                x0 = value,
+                                y0 = df_OHLC.Low.min() - 10,
+                                x1 = value,
+                                y1 = df_OHLC.High.max(),
+                                line = dict(
+                                            color = line_color,
+                                            width = line_width,
+                                            dash = line_dash
+                                            )                        
+                             )        
+                        )
+            annotations.append(dict(
+                                text = text,
+                                x = value,                       
+                                y = df_OHLC.loc[value].High,                                          
+                                   )        
+                              )
+    return shape, annotations
