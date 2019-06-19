@@ -483,7 +483,7 @@ def get_rollover(df, df_OHLC, timeR = True, line_color = 'rgb(55, 128, 191)',\
 def invert_ts(df, offset = False):
     # переворачиваем котировку (аугментируем)
     invert = pd.DataFrame()
-    offset = True
+    offset = offset
     last = np.shape(df)[0]
     if offset:
         op = df.at[last - 1, 'Open']
