@@ -480,13 +480,6 @@ def get_rollover(df, df_OHLC, timeR = True, line_color = 'rgb(55, 128, 191)',\
                               )
     return shape, annotations
 
-def addgit(link, directory):
-    # Загружаем Git по ссылке link в директорию directory, если нет директроии.
-    !test -d directory || git clone link
-    if not directory in sys.path:
-      sys.path += [directory]
-    !ls directory
-
 def invert_ts(df, offset = False):
     # переворачиваем котировку (аугментируем)
     invert = pd.DataFrame()
