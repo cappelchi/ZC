@@ -509,7 +509,7 @@ def invert_ts(df, offset = False):
     o = op
     c = cp
 
-    for i in range(1, np.shape(df_zc_60min_ba)[0]):
+    for i in range(1, np.shape(df)[0]):
         hp = h
         lp = l
         op = o
