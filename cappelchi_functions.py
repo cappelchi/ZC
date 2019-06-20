@@ -508,18 +508,20 @@ def invert_ts(df, offset = False):
     l = lp
     o = op
     c = cp
-
+    print (o, h, l, c, ' - ', op, hp, lp, cp)
     for i in range(1, np.shape(df)[0]):
         hp = h
         lp = l
         op = o
         cp = c
-        
+        if i < 3:
+            print (o, h, l, c, ' - ', op, hp, lp, cp)
         h = df.at[i, 'High'] 
         l = df.at[i, 'Low']
         o = df.at[i, 'Open']
         c = df.at[i, 'Close']
-        
+        if i < 3:
+            print (o, h, l, c, ' - ', op, hp, lp, cp)
         invert.at[i, 'High'] = hr = invert.at[i - 1, 'High'] * lp / l
         invert.at[i, 'Low'] = lr = invert.at[i - 1, 'Low'] * hp /  h        
         invert.at[i, 'Open'] = l * hr / o
