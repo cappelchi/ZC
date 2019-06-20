@@ -485,29 +485,33 @@ def invert_ts(df, offset = False):
     invert = pd.DataFrame()
     offset = offset
     last = np.shape(df)[0]
-    if offset:
-        op = df.at[last - 1, 'Open']
-        hp = df.at[last -1, 'High']
-        lp = df.at[last - 1, 'Low']
-        cp = df.at[last - 1, 'Close']
-        vp = df.at[last - 1, 'Volume']
-    else:
-        op = df.at[0, 'Open']
-        hp = df.at[0, 'High']
-        lp = df.at[0, 'Low']
-        cp = df.at[0, 'Close']
-        vp = df.at[0, 'Volume']
-
-    invert.at[0, 'Open'] = op
-    invert.at[0, 'High'] = hp
-    invert.at[0, 'Low'] = lp
-    invert.at[0, 'Close'] = cp
-    invert.at[0, 'Volume'] = vp
+    
+    op = df.at[0, 'Open']
+    hp = df.at[0, 'High']
+    lp = df.at[0, 'Low']
+    cp = df.at[0, 'Close']
+    vp = df.at[0, 'Volume']
     
     h = hp
     l = lp
     o = op
     c = cp
+    
+    if offset:
+        invert.at[0, 'Open'] = df.at[last - 1, 'Open']
+        invert.at[0, 'High'] = df.at[last -1, 'High']
+        invert.at[0, 'Low'] = df.at[last - 1, 'Low']
+        invert.at[0, 'Close'] = df.at[last - 1, 'Close']
+        invert.at[0, 'Volume'] = df.at[last - 1, 'Volume']
+        
+    else:
+        invert.at[0, 'Open'] = op
+        invert.at[0, 'High'] = hp
+        invert.at[0, 'Low'] = lp
+        invert.at[0, 'Close'] = cp
+        invert.at[0, 'Volume'] = vp
+    
+
     
     for i in range(1, np.shape(df)[0]):
         hp = h
