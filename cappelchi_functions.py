@@ -6,6 +6,7 @@
 
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
 
 def short_label_equity(df, TakeUp, TrailDown, setY = False):
     #warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -513,7 +514,7 @@ def invert_ts(df, offset = False):
     
 
     
-    for i in range(1, np.shape(df)[0]):
+    for i in tqdm(range(1, np.shape(df)[0])):
         hp = h
         lp = l
         op = o
@@ -523,11 +524,8 @@ def invert_ts(df, offset = False):
         l = df.at[i, 'Low']
         o = df.at[i, 'Open']
         c = df.at[i, 'Close']
-        if i < 3:
-            print (invert.at[i - 1, 'High'])
+        
         invert.at[i, 'High'] = hr = invert.at[i - 1, 'High'] * lp / l
-        if i < 3:
-            print (invert.at[i, 'High'], hr, invert.at[i - 1, 'High'])
         invert.at[i, 'Low'] = lr = invert.at[i - 1, 'Low'] * hp /  h        
         invert.at[i, 'Open'] = l * hr / o
         invert.at[i, 'Close'] = l * hr / c
